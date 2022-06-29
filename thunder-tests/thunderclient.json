@@ -18,13 +18,32 @@
     "colId": "069a6d0c-1213-4626-8bbc-f7a835022740",
     "containerId": "",
     "name": "Product Id",
-    "url": "http://localhost:3000/products/90",
+    "url": "http://localhost:3000/products/4",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-06-29T19:13:10.738Z",
-    "modified": "2022-06-29T19:42:15.251Z",
+    "modified": "2022-06-29T19:50:45.657Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4fb42241-e69d-419e-acbe-0268dd1b1d0f",
+    "colId": "069a6d0c-1213-4626-8bbc-f7a835022740",
+    "containerId": "",
+    "name": "Product Add",
+    "url": "http://localhost:3000/products/",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-06-29T20:17:10.851Z",
+    "modified": "2022-06-29T20:32:30.964Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"name\": \"Espada\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

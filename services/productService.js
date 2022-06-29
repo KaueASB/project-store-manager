@@ -20,6 +20,19 @@ const productService = {
     return item;
   },
 
+  async validateBody(body) {
+    const schema = Joi.object({
+      name: Joi.string().required(),
+    });
+    const result = await schema.validateAsync(body);
+    return result;
+  },
+
+  async create(name) {
+    const newProduct = await productModel.create(name);
+    return newProduct;
+  },
+
 };
 
 module.exports = productService;

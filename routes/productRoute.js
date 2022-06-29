@@ -9,7 +9,7 @@ productRoute.delete('/:id', (_req, _res) => { });
 
 productRoute.put('/:id', (_req, _res) => { });
 
-productRoute.post('/', (_req, _res) => { });
+productRoute.post('/', productController.create);
 
 productRoute.get('/', productController.getList);
 

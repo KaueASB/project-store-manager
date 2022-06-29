@@ -10,6 +10,13 @@ const productModel = {
     const [[item]] = await db.query('select * from StoreManager.products where id = ?', [id]);
     return item;
   },
+
+  async create(name) {
+    const sql = 'insert into StoreManager.products (name) values (?)';
+    const [addProduct] = await db.query(sql, [name]);
+    const { insertId } = addProduct;
+    return insertId;
+  },
 };
 
 module.exports = productModel;
