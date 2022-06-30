@@ -5,9 +5,9 @@ const productRoute = Router();
 
 productRoute.get('/:id', productController.getById);
 
-productRoute.delete('/:id', (_req, _res) => { });
+// productRoute.delete('/:id', productController.remove, (_req, _res) => { });
 
-productRoute.put('/:id', (_req, _res) => { });
+// productRoute.put('/:id', productController.update, (_req, _res) => { });
 
 productRoute.post('/', productController.create);
 

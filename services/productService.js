@@ -1,4 +1,5 @@
 const Joi = require('joi');
+// const ThrowErrors = require('../middlewares/errors');
 const productModel = require('../models/productModel');
 
 const productService = {
@@ -22,15 +23,15 @@ const productService = {
 
   async validateBody(body) {
     const schema = Joi.object({
-      name: Joi.string().required(),
+      name: Joi.string().required().min(5),
     });
     const result = await schema.validateAsync(body);
     return result;
   },
 
   async create(name) {
-    const newProduct = await productModel.create(name);
-    return newProduct;
+    const addProduct = await productModel.create(name);
+    return addProduct;
   },
 
 };
