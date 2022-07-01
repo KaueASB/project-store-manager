@@ -1,24 +1,16 @@
 const express = require('express');
 require('express-async-errors');
 const productRoute = require('./routes/productRoute');
+const salesRoute = require('./routes/salesRoute');
+const ErrorHandler = require('./middlewares/ErrorHandler');
 
 const app = express();
 app.use(express.json());
 
 app.use('/products', productRoute);
+app.use('/sales', salesRoute);
 
-app.use((err, _req, res, _next) => {
-  switch (err.message) {
-    case 'err.details[0].message':
-      res.status(400).json({ message: err.message });
-      break;
-    case '"name" length must be at least 5 characters long':
-      res.status(422).json({ message: err.message });
-      break;
-    default:
-      res.status(500).json({ message: err.message });
-  }
-});
+app.use(ErrorHandler);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {

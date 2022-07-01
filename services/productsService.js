@@ -1,10 +1,9 @@
 const Joi = require('joi');
-// const ThrowErrors = require('../middlewares/errors');
-const productModel = require('../models/productModel');
+const productsModel = require('../models/productsModel');
 
-const productService = {
+const productsService = {
   async getList() {
-    const items = await productModel.getList();
+    const items = await productsModel.getList();
     return items;
   },
 
@@ -17,7 +16,7 @@ const productService = {
   },
 
   async getById(id) {
-    const item = await productModel.getById(id);
+    const item = await productsModel.getById(id);
     return item;
   },
 
@@ -30,10 +29,10 @@ const productService = {
   },
 
   async create(name) {
-    const addProduct = await productModel.create(name);
+    const addProduct = await productsModel.create(name);
     return addProduct;
   },
 
 };
 
-module.exports = productService;
+module.exports = productsService;
