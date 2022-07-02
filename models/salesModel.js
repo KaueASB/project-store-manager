@@ -14,7 +14,6 @@ const salesModel = {
 
   async getById(id) {
     const [[item]] = await db.query('select * from StoreManager.sales where id = ?', [id]);
-    console.log(item);
     return item;
   },
 };

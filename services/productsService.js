@@ -38,6 +38,10 @@ const productsService = {
     return updateProduct;
   },
 
+  async remove(id) {
+    const removeProduct = await productsModel.remove(id);
+    return removeProduct;
+  },
 };
 
 module.exports = productsService;

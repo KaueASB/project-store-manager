@@ -21,7 +21,12 @@ const productsModel = {
   async update(name, id) {
     const sql = 'update StoreManager.products set name = ? where id = ?';
     const [{ affectedRows }] = await db.query(sql, [name, id]);
-    console.log(affectedRows);
+    return affectedRows;
+  },
+
+  async remove(id) {
+    const sql = 'delete from StoreManager.products where id = ?';
+    const [{ affectedRows }] = await db.query(sql, [id]);
     return affectedRows;
   },
 };

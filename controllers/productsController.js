@@ -34,6 +34,17 @@ const productsController = {
 
     return res.status(200).json({ id, name });
   },
+
+  async remove(req, res) {
+    const { id } = await productsService.validateParamsId(req.params);
+    const isValidId = await productsService.getById(id);
+    if (!isValidId) return res.status(404).json({ message: MESSAGE });
+
+    const removeItem = await productsService.remove(id);
+    if (!removeItem) return res.status(404).json({ message: MESSAGE });
+
+    return res.sendStatus(204);
+  },
 };
 
 module.exports = productsController;

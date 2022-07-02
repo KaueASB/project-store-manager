@@ -5,7 +5,7 @@ const productRoute = Router();
 
 productRoute.get('/:id', productsController.getById);
 
-// productRoute.delete('/:id', productController.remove, (_req, _res) => { });
+productRoute.delete('/:id', productsController.remove);
 
 productRoute.put('/:id', productsController.update);
 
