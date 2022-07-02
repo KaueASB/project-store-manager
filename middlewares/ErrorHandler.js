@@ -4,7 +4,11 @@
 //   throw error;
 // };
 
-const ErrorHandler = ((err, _req, res, _next) => {
+// const runSchema = (schema) = (value) => {
+
+// }
+
+function ErrorHandler(err, _req, res, _next) {
   const { message } = err;
   switch (message) {
     case '"name" is required':
@@ -16,6 +20,6 @@ const ErrorHandler = ((err, _req, res, _next) => {
     default:
       res.status(500).json({ message });
   }
-});
+}
 
-module.exports = ErrorHandler;
+  module.exports = ErrorHandler;

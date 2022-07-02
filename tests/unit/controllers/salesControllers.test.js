@@ -16,16 +16,15 @@ describe('testando salesController', () => {
       return chai.expect(item).to.eventually.be.rejected;
     });
 
-    it('caso o salesController retorne o json correto', async () => {
-      sinon.stub(salesService, "getList").resolves([{}]);
+    it('caso o salesController retorne com sucesso', async () => {
+      sinon.stub(salesService, "getList").resolves([{"id": 1,"date": "2022-07-02T17:44:44.000Z"},{"id": 2,"date": "2022-07-02T17:44:44.000Z"}]);
       const res = {}
 
-      res.status = sinon.stub().returns();
-      res.json = sinon.stub().returns([{}]);
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
 
-      const item = await salesController.getList([{}], res);
-      chai.expect(res.json.calledWith(item)).to.be.equal({})
-      return chai.expect(res.status.calledWith(200)).to.be.equal(200);
+      await salesController.getList({}, res );
+      return chai.expect(res.status.calledWith(200)).to.be.deep.equal(true);
     });
   });
 

@@ -16,16 +16,15 @@ describe('testando productsController', () => {
       return chai.expect(item).to.eventually.be.rejected;
     });
 
-    it('caso o productsController retorne o json correto', async () => {
+    it('caso o productsController retorne com sucesso', async () => {
       sinon.stub(productsService, "getList").resolves([{}]);
       const res = {}
 
-      res.status = sinon.stub().returns();
-      res.json = sinon.stub().returns([{}]);
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
 
-      const item = await productsController.getList([{}], res);
-      chai.expect(res.json.calledWith(item)).to.be.equal({})
-      return chai.expect(res.status.calledWith(200)).to.be.equal(200);
+      await productsController.getList({}, res);
+      return chai.expect(res.status.calledWith(200)).to.be.deep.equal(true);
     });
   });
 
