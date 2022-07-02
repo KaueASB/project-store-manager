@@ -17,7 +17,10 @@ describe('testando salesController', () => {
     });
 
     it('caso o salesController retorne com sucesso', async () => {
-      sinon.stub(salesService, "getList").resolves([{"id": 1,"date": "2022-07-02T17:44:44.000Z"},{"id": 2,"date": "2022-07-02T17:44:44.000Z"}]);
+      sinon.stub(salesService, "getList").resolves([
+        { "id": 1, "date": "2022-07-02T17:44:44.000Z" },
+        { "id": 2, "date": "2022-07-02T17:44:44.000Z" },
+      ]);
       const res = {}
 
       res.status = sinon.stub().returns(res);
@@ -25,6 +28,17 @@ describe('testando salesController', () => {
 
       await salesController.getList({}, res );
       return chai.expect(res.status.calledWith(200)).to.be.deep.equal(true);
+    });
+
+    it('caso o salesController retorne com status 404', async () => {
+      const res = {}
+      
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      
+      sinon.stub(salesService, "getList").resolves(false);
+      await salesController.getList({}, res);
+      return chai.expect(res.status.calledWith(404)).to.be.deep.equal(true);
     });
   });
 
@@ -44,18 +58,6 @@ describe('testando salesController', () => {
       await salesController.getById(req, res);
       chai.expect(res.status.getCall(0).args[0]).to.equal(200);
       chai.expect(res.json.getCall(0).args[0]).to.be.deep.equal({});
-    });
-
-    it("deve retornar o status 404 caso salesController retorne com erro", async () => {
-      const req = { params: { id: 90 } };
-      const res = {};
-
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
-
-      sinon.stub(salesService, 'getById').resolves(false);
-      await salesController.getById(req, res);
-      return chai.expect(res.status.calledWith(404)).to.be.equal(true);
     });
 
     it("deve retornar o status 200 caso salesController retorne com erro", async () => {
