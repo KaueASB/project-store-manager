@@ -17,6 +17,13 @@ const productsModel = {
     const [{ insertId }] = await db.query(sql, [name]);
     return insertId;
   },
+
+  async update(name, id) {
+    const sql = 'update StoreManager.products set name = ? where id = ?';
+    const [{ affectedRows }] = await db.query(sql, [name, id]);
+    console.log(affectedRows);
+    return affectedRows;
+  },
 };
 
 module.exports = productsModel;

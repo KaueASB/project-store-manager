@@ -33,6 +33,11 @@ const productsService = {
     return addProduct;
   },
 
+  async update(name, id) {
+    const updateProduct = await productsModel.update(name, id);
+    return updateProduct;
+  },
+
 };
 
 module.exports = productsService;
