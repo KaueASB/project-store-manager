@@ -33,13 +33,20 @@ describe('testando salesService', () => {
       sinon.stub(salesModel, 'getById').rejects();
       chai.expect(salesService.getById(4)).to.eventually.be.rejected;
     });
+
     it('deve retornar um array vazio caso salesModel retorne uma lista vazia', () => {
       sinon.stub(salesModel, 'getById').resolves([[[]]]);
       chai.expect(salesService.getById(4)).to.eventually.be.undefined;
     })
+
     it("deve retornar um item caso salesModel retorne com sucesso", () => {
       sinon.stub(salesModel, 'getById').resolves([[{}]]);
       chai.expect(salesService.getById(4)).to.eventually.deep.equal({});
+    });
+
+    it("caso o salesModel retorne um array vazio", () => {
+      sinon.stub(salesModel, 'getById').resolves([]);
+      chai.expect(salesService.getById(4)).to.eventually.deep.equal([]);
     });
   })
 

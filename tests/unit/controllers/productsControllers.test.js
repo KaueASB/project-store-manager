@@ -104,4 +104,38 @@ describe('testando productsController', () => {
       return chai.expect(res.status.calledWith(404)).to.be.equal(true);
     });
   })
+
+  describe('update', () => {
+    beforeEach(sinon.restore);
+    it('deve disparar um erro caso productsService não retorne encontre o id', () => {
+      sinon.stub(productsService, "update").rejects();
+      chai.expect(productsController.update({})).to.eventually.be.rejected;
+    });
+
+    // it("deve retornar o status 200 caso productsController retorne com sucesso", () => {
+    //   const req = { body: { name: 'Kaue Alves' } };
+    //   const res = {};
+
+    //   res.status = sinon.stub().returns(res);
+    //   res.json = sinon.stub().returns();
+
+    //   const result = sinon.stub(productsService, 'getById').resolves({ id: 1, name: 'Martelo de Thor' });
+    //   sinon.stub(productsService, 'update').resolves(true);
+    //   productsController.update(req, res);
+    //   chai.expect(res.status.calledWith(200)).to.be.deep.equal(true);
+    // });
+
+    // it("deve retornar o status 404 caso productsController retorne com erro", async () => {
+    //   const req = { body: { name: 'Kaue Alves' } };
+    //   const res = {};
+
+    //   res.status = sinon.stub().returns(res);
+    //   res.json = sinon.stub().returns();
+
+    //   sinon.stub(productsService, 'getById').rejects({});
+    //   sinon.stub(productsService, 'update').rejects();
+    //   await productsController.update(req, res);
+    //   return chai.expect(res.status.calledWith(404)).to.be.equal(true);
+    // });
+  })
 })
