@@ -38,16 +38,6 @@ const salesService = {
   //     const { code, message } = validateFields(body);
   //     if (message) return { code, message };
   //   }
-    
-  //   const schema = Joi.object({
-  //     productId: Joi.number().integer().required(),
-  //     quantity: Joi.number().integer().required().min(1),
-  //   });
-
-  //   const result = await schema.validateAsync(body);
-  //   console.log('result', result);
-
-  //   if (!schema) return { code: 404, message: 'Product not found' };
 
   //   const newSale = await salesModel.addSale();
   //   return newSale;
@@ -59,7 +49,6 @@ const salesService = {
   //     const cons = await productsModel.getById(ele.productId);
   //     results.push(cons);
   //   }));
-  //   // console.log('results', results);
 
   //   const idValid = results.every((each) => each);
   //   if (!idValid) return { code: 404, message: 'Product not found' };
