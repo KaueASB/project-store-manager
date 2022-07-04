@@ -65,6 +65,11 @@ const salesService = {
   //   if (!idValid) return { code: 404, message: 'Product not found' };
   //   return true;
   // },
+
+  async remove(id) {
+    const removeProduct = await salesModel.remove(id);
+    return removeProduct;
+  },
 };
 
 module.exports = salesService;

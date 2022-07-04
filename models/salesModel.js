@@ -33,6 +33,12 @@ const salesModel = {
   //   const [{ insertId }] = await db.query(sql);
   //   return insertId;
   // },
+
+  async remove(id) {
+    const sql = 'delete from StoreManager.sales where id = ?';
+    const [{ affectedRows }] = await db.query(sql, [id]);
+    return affectedRows;
+  },
 };
 
 module.exports = salesModel;

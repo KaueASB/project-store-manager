@@ -1,4 +1,5 @@
 const salesService = require('../services/salesService');
+const productsService = require('../services/productsService');
 
 const salesController = {
   async getList(_req, res) {
@@ -19,6 +20,17 @@ const salesController = {
   //   if (message) return res.status(code).json({ message });
   //   return res.sendStatus(201);
   // },
+
+  async remove(req, res) {
+    const { id } = await productsService.validateParamsId(req.params);
+    const isValidId = await salesService.getById(id);
+    if (!isValidId) return res.status(404).json({ message: 'Sale not found' });
+
+    const removeItem = await salesService.remove(id);
+    if (!removeItem) return res.status(404).json({ message: 'Sale not found' });
+
+    return res.sendStatus(204);
+  },
 };
 
 module.exports = salesController;
