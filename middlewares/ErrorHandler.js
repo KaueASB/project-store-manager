@@ -1,14 +1,3 @@
-// const ThrowErrors = (err) => {
-//   const error = new Error(err);
-//   error.name = 'ValidationError';
-//   throw error;
-// };
-
-const runSchema = (schema) => async (unknown) => {
-  const result = await schema.validateAsync(unknown);
-  return result;
-};
-
 function ErrorHandler(err, _req, res, _next) {
   const { message } = err;
   switch (message) {
@@ -23,7 +12,4 @@ function ErrorHandler(err, _req, res, _next) {
   }
 }
 
-module.exports = {
-  ErrorHandler,
-  runSchema,
-};
+module.exports = ErrorHandler;

@@ -29,6 +29,13 @@ const productsModel = {
     const [{ affectedRows }] = await db.query(sql, [id]);
     return affectedRows;
   },
+
+  async search(q) {
+    const sql = `select * from StoreManager.products where name like '%${q}%'`;
+    console.log(sql);
+    const [result] = await db.query(sql);
+    return result;
+  },
 };
 
 module.exports = productsModel;
