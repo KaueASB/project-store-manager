@@ -1,4 +1,5 @@
 const productsModel = require('../models/productsModel');
+const productsService = require('./productsService');
 const salesModel = require('../models/salesModel');
 
 const salesService = {
@@ -10,7 +11,7 @@ const salesService = {
   async getById(id) {
     const idExist = await salesModel.existId(id);
     const item = await salesModel.getById(id);
-    if (item.length === 0 || !idExist) return { code: 404, message: 'Sale not found' };
+    if (!idExist || item.length === 0) return { code: 404, message: 'Sale not found' };
     return item;
   },
 
@@ -47,12 +48,29 @@ const salesService = {
 
     const itemsSold = await Promise.all(body.map(({ productId, quantity }) => salesModel
       .addProd(newSaleId, productId, quantity)));
-    return { sold: { id: newSaleId, itemsSold } };
+    return { newSold: { id: newSaleId, itemsSold } };
   },
 
   async remove(id) {
     const removeProduct = await salesModel.remove(id);
     return removeProduct;
+  },
+
+  async update(body, paramsId) {
+    const { id } = await productsService.validateParamsId(paramsId);
+
+    const { code, message } = this.validateBody(body);
+    if (message) return { code, message };
+
+    const prodExist = await this.existIdProd(body);
+    if (!prodExist) return { code: 404, message: 'Product not found' };
+
+    const saleExist = await salesModel.getById(id);
+    if (saleExist.length === 0) return { code: 404, message: 'Sale not found' };
+
+    const itemsUpdated = await Promise.all(body.map(({ productId, quantity }) => salesModel
+      .update(id, productId, quantity)));
+    return { updateItem: { saleId: id, itemsUpdated } };
   },
 };
 

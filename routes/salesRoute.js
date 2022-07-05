@@ -7,7 +7,7 @@ salesRoute.get('/:id', salesController.getById);
 
 salesRoute.delete('/:id', salesController.remove);
 
-// salesRoute.put('/:id', salesController.update, (_req, _res) => { });
+salesRoute.put('/:id', salesController.update);
 
 salesRoute.post('/', salesController.addSale);
 

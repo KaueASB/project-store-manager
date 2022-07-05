@@ -16,10 +16,9 @@ const salesController = {
   },
 
   async addSale(req, res) {
-    const { code, message, sold } = await salesService.addSale(req.body);
+    const { code, message, newSold } = await salesService.addSale(req.body);
     if (message) return res.status(code).json({ message });
-
-    return res.status(201).json(sold);
+    return res.status(201).json(newSold);
   },
 
   async remove(req, res) {
@@ -31,6 +30,13 @@ const salesController = {
     if (!removeItem) return res.status(404).json({ message: 'Sale not found' });
 
     return res.sendStatus(204);
+  },
+
+  async update(req, res) {
+    const { code, message, updateItem } = await salesService.update(req.body, req.params);
+    if (message) return res.status(code).json({ message });
+
+    return res.status(200).json(updateItem);
   },
 };
 

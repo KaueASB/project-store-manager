@@ -46,6 +46,13 @@ const salesModel = {
     const [{ affectedRows }] = await db.query(sql, [id]);
     return affectedRows;
   },
+
+  async update(id, productId, quantity) {
+    const sql = `update StoreManager.sales_products
+    set quantity = ? where sale_id = ? and product_id = ?`;
+    await db.query(sql, [quantity, id, productId]);
+    return { productId, quantity };
+  },
 };
 
 module.exports = salesModel;

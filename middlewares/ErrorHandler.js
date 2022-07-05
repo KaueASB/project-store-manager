@@ -6,7 +6,6 @@
 
 const runSchema = (schema) => async (unknown) => {
   const result = await schema.validateAsync(unknown);
-  console.log('result do runSchema', result);
   return result;
 };
 
