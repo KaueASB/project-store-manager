@@ -9,7 +9,7 @@ salesRoute.delete('/:id', salesController.remove);
 
 // salesRoute.put('/:id', salesController.update, (_req, _res) => { });
 
-// salesRoute.post('/', salesController.addSale);
+salesRoute.post('/', salesController.addSale);
 
 salesRoute.get('/', salesController.getList);
 

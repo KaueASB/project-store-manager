@@ -28,11 +28,18 @@ const salesModel = {
     return item;
   },
   
-  // async addSale() {
-  //   const sql = 'insert into StoreManager.sales (date) values (now())';
-  //   const [{ insertId }] = await db.query(sql);
-  //   return insertId;
-  // },
+  async addSale() {
+    const sql = 'insert into StoreManager.sales (date) values (now())';
+    const [{ insertId }] = await db.query(sql);
+    return insertId;
+  },
+
+  async addProd(saleId, productId, quantity) {
+    const sql = `insert into StoreManager.sales_products
+    (sale_id, product_id, quantity) values (?, ?, ?)`;
+    await db.query(sql, [saleId, productId, quantity]);
+    return { productId, quantity };
+  },
 
   async remove(id) {
     const sql = 'delete from StoreManager.sales where id = ?';

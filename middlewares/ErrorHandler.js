@@ -4,9 +4,11 @@
 //   throw error;
 // };
 
-// const runSchema = (schema) = (value) => {
-
-// }
+const runSchema = (schema) => async (unknown) => {
+  const result = await schema.validateAsync(unknown);
+  console.log('result do runSchema', result);
+  return result;
+};
 
 function ErrorHandler(err, _req, res, _next) {
   const { message } = err;
@@ -22,4 +24,7 @@ function ErrorHandler(err, _req, res, _next) {
   }
 }
 
-  module.exports = ErrorHandler;
+module.exports = {
+  ErrorHandler,
+  runSchema,
+};

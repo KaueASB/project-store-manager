@@ -15,11 +15,12 @@ const salesController = {
     return res.status(200).json(item);
   },
 
-  // async addSale(req, res) {
-  //   const { code, message } = await salesService.addSale(req.body);
-  //   if (message) return res.status(code).json({ message });
-  //   return res.sendStatus(201);
-  // },
+  async addSale(req, res) {
+    const { code, message, sold } = await salesService.addSale(req.body);
+    if (message) return res.status(code).json({ message });
+
+    return res.status(201).json(sold);
+  },
 
   async remove(req, res) {
     const { id } = await productsService.validateParamsId(req.params);

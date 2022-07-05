@@ -2,7 +2,7 @@ const express = require('express');
 require('express-async-errors');
 const productRoute = require('./routes/productRoute');
 const salesRoute = require('./routes/salesRoute');
-const ErrorHandler = require('./middlewares/ErrorHandler');
+const { ErrorHandler } = require('./middlewares/ErrorHandler');
 
 const app = express();
 app.use(express.json());
