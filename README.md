@@ -14,3 +14,18 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 
 -->
+
+# Boas-vindas ao repositório do Projeto Store Manager! 
+
+Este projeto teho cunho educacional. Foi desenvolvido para colocar em prática o ensino dado pela Trybe.
+
+<details>
+  <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary>
+
+  Neste projeto foi desenvolvido minha primeira API utilizando a arquitetura MSC (model-service-controller)!
+
+  A API a ser construída é um sistema de gerenciamento de vendas no formato dropshipping em que é possível criar, visualizar, deletar e atualizar produtos e vendas. Foi utilizado o banco de dados MySQL para a gestão de dados. Além disso, a API foi desenvolvida no padrão RESTful.
+  
+  Também foi desenvolvido os testes unitários utilizando Mocha, Chai e Sinon
+  <br />
+</details>
